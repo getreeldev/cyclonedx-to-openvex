@@ -1,0 +1,24 @@
+cyclonedx-to-openvex
+Copyright 2026 getreeldev
+
+This product includes software developed by getreeldev.
+
+Prior art acknowledgements
+--------------------------
+
+The CycloneDX -> OpenVEX vocabulary crosswalk in this library
+(crosswalk/crosswalk.yaml) is seeded from the community mapping discussed in:
+
+  * CycloneDX/specification Discussion #609
+    "Mapping CycloneDX bi-directionally to Minimum Requirements for VEX"
+    https://github.com/CycloneDX/specification/discussions/609
+
+and anchored on the status/justification labels defined by:
+
+  * CISA, "Minimum Requirements for Vulnerability Exploitability eXchange (VEX)"
+    (April 2023). OpenVEX implements these labels verbatim.
+    https://www.cisa.gov/resources-tools/resources/minimum-requirements-vulnerability-exploitability-exchange-vex
+
+cyclonedx-to-openvex is not derived from those documents; they were read as
+prior art to ground the mapping. The crosswalk records fidelity (exact / lossy
+/ contested) for every entry so consumers can decide how much loss to accept.

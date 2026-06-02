@@ -1,0 +1,50 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "metadata": {
+    "timestamp": "2026-05-08T12:05:36Z"
+  },
+  "components": [
+    { "bom-ref": "comp-krb5", "type": "library", "name": "libk5crypto3", "purl": "pkg:deb/debian/libk5crypto3@1.18.3-6%2Bdeb11u2?arch=amd64&distro=debian-11.5" }
+  ],
+  "vulnerabilities": [
+    {
+      "id": "CVE-2022-42898",
+      "analysis": {
+        "state": "not_affected",
+        "justification": "requires_environment",
+        "detail": "32-bit only; this image is 64-bit."
+      },
+      "affects": [ { "ref": "comp-krb5" } ]
+    },
+    {
+      "id": "CVE-2023-0001",
+      "analysis": {
+        "state": "not_affected",
+        "justification": "code_not_reachable"
+      },
+      "affects": [ { "ref": "pkg:golang/golang.org/x/net@v0.17.0" } ]
+    },
+    {
+      "id": "CVE-2023-0002",
+      "analysis": {
+        "state": "resolved"
+      },
+      "affects": [ { "ref": "pkg:golang/golang.org/x/net@v0.17.0" } ]
+    },
+    {
+      "id": "CVE-2023-0003",
+      "analysis": {
+        "state": "false_positive"
+      },
+      "affects": [ { "ref": "pkg:golang/golang.org/x/net@v0.17.0" } ]
+    },
+    {
+      "id": "CVE-2023-0004",
+      "analysis": {
+        "state": "not_affected",
+        "justification": "code_not_present"
+      }
+    }
+  ]
+}

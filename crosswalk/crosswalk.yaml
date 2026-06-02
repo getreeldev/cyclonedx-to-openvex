@@ -1,0 +1,81 @@
+# crosswalk.yaml — VEX vocabulary crosswalk
+# GENERATED from crosswalk.Entries (crosswalk/crosswalk.go) — edit there, not here.
+# Run: go run ./cmd/cyclonedx-to-openvex -dump-crosswalk > crosswalk/crosswalk.yaml
+#
+# Maps CycloneDX VEX (analysis.state / analysis.justification) onto the CISA
+# "Minimum Requirements for VEX" labels, which OpenVEX implements verbatim.
+# Primary direction CycloneDX -> OpenVEX is deterministic (lossy where noted).
+# reverse_ambiguous entries must not be auto-applied OpenVEX -> CycloneDX.
+
+version: "0.1.0"
+anchor: "CISA Minimum Requirements for VEX (2023-04)"
+canonical_serialization: "OpenVEX 0.2.0"
+specs:
+  cyclonedx: "1.6"
+  openvex: "0.2.0"
+  cisa: "2023-04"
+sources:
+  - "https://github.com/CycloneDX/specification/discussions/609"
+  - "https://www.cisa.gov/sites/default/files/2023-04/minimum-requirements-for-vex-508c.pdf"
+fidelity_legend:
+  exact: "1:1, no semantic loss"
+  lossy: "deterministic target, but source detail is discarded"
+  contested: "no community consensus yet; default chosen, see note"
+
+status:
+  - cyclonedx: "not_affected"
+    openvex: "not_affected"
+    fidelity: "exact"
+  - cyclonedx: "exploitable"
+    openvex: "affected"
+    fidelity: "exact"
+  - cyclonedx: "in_triage"
+    openvex: "under_investigation"
+    fidelity: "exact"
+  - cyclonedx: "resolved"
+    openvex: "fixed"
+    fidelity: "exact"
+  - cyclonedx: "resolved_with_pedigree"
+    openvex: "fixed"
+    fidelity: "lossy"
+    note: "OpenVEX has no pedigree concept; the proof-of-fix provenance is dropped."
+  - cyclonedx: "false_positive"
+    openvex: "not_affected"
+    fidelity: "contested"
+    note: "CycloneDX state carries no justification, but OpenVEX requires one for not_affected. A bare false_positive cannot become valid OpenVEX; convert only when a justification is also supplied, else fall back to under_investigation. #609 leans component_not_present but marks it uncertain."
+
+justification:
+  - cyclonedx: "code_not_present"
+    openvex: "vulnerable_code_not_present"
+    fidelity: "exact"
+  - cyclonedx: "code_not_reachable"
+    openvex: "vulnerable_code_not_in_execute_path"
+    fidelity: "exact"
+  - cyclonedx: "protected_by_mitigating_control"
+    openvex: "inline_mitigations_already_exist"
+    fidelity: "exact"
+  - cyclonedx: "protected_by_compiler"
+    openvex: "inline_mitigations_already_exist"
+    fidelity: "lossy"
+    note: "Not enumerated in #609; compiler hardening is an inline mitigation. Proposed."
+  - cyclonedx: "protected_at_runtime"
+    openvex: "vulnerable_code_cannot_be_controlled_by_adversary"
+    fidelity: "contested"
+    reverse_ambiguous: true
+    note: "#609 groups this under cannot_be_controlled, but runtime protection (ASLR, sandbox) is arguably inline_mitigations_already_exist. Open cell."
+  - cyclonedx: "protected_at_perimeter"
+    openvex: "vulnerable_code_cannot_be_controlled_by_adversary"
+    fidelity: "lossy"
+    reverse_ambiguous: true
+  - cyclonedx: "requires_configuration"
+    openvex: "vulnerable_code_cannot_be_controlled_by_adversary"
+    fidelity: "lossy"
+    reverse_ambiguous: true
+  - cyclonedx: "requires_dependency"
+    openvex: "vulnerable_code_cannot_be_controlled_by_adversary"
+    fidelity: "lossy"
+    reverse_ambiguous: true
+  - cyclonedx: "requires_environment"
+    openvex: "vulnerable_code_cannot_be_controlled_by_adversary"
+    fidelity: "lossy"
+    reverse_ambiguous: true
